@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>TP1 - Formulaire</title>
+</head>
+<body>
+<h2>Formulaire d'inscription</h2>
+
+<!-- Le formulaire envoie une requete POST : c'est donc doPost() qui la traite -->
+<form action="FormServlet" method="post">
+    <table>
+        <tr>
+            <td>First name :</td>
+            <td><input type="text" name="firstName" required></td>
+        </tr>
+        <tr>
+            <td>Last name :</td>
+            <td><input type="text" name="lastName" required></td>
+        </tr>
+        <tr>
+            <td>Birth date (mm/dd/yyyy) :</td>
+            <td><input type="text" name="birthDay" placeholder="mm/dd/yyyy"
+                       pattern="\d{2}/\d{2}/\d{4}" required></td>
+        </tr>
+        <tr>
+            <td>Sex :</td>
+            <td>
+                <input type="radio" name="sex" value="Male" id="m" checked><label for="m">Male</label>
+                <input type="radio" name="sex" value="Female" id="f"><label for="f">Female</label>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Envoyer"></td>
+        </tr>
+    </table>
+</form>
+
+<p><a href="ReadCookie">Lire les cookies (ReadCookie)</a></p>
+<p><a href="index.html">Retour au menu</a></p>
+</body>
+</html>

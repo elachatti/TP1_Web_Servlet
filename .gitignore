@@ -1,0 +1,10 @@
+# Fichiers compiles (generes par javac)
+*.class
+
+# IDE
+.idea/
+*.iml
+out/
+.settings/
+.project
+.classpath

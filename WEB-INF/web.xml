@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+
+    <display-name>tp1</display-name>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
+    <!--
+        Les servlets sont declarees avec @WebServlet dans le code.
+        On ne les redeclare PAS ici : la meme URL mappee deux fois
+        (web.xml + annotation) empeche toute l'application de demarrer.
+    -->
+
+    <!-- ===== Filtres (partie 1.4.1) : l'ordre des filter-mapping = l'ordre d'execution ===== -->
+    <filter>
+        <filter-name>LoggingFilter</filter-name>
+        <filter-class>ex1.LoggingFilter</filter-class>
+        <init-param>
+            <param-name>logPrefix</param-name>
+            <param-value>[TP1-LOG]</param-value>
+        </init-param>
+    </filter>
+
+    <filter>
+        <filter-name>SecurityFilter</filter-name>
+        <filter-class>ex1.SecurityFilter</filter-class>
+    </filter>
+
+    <!-- 1) LoggingFilter d'abord ... -->
+    <filter-mapping>
+        <filter-name>LoggingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!-- 2) ... puis SecurityFilter, uniquement sur /ListItems -->
+    <filter-mapping>
+        <filter-name>SecurityFilter</filter-name>
+        <url-pattern>/ListItems</url-pattern>
+    </filter-mapping>
+
+    <!-- ===== Listener declare en XML (partie 1.4.2, question 6) ===== -->
+    <listener>
+        <listener-class>ex1.RequestListener</listener-class>
+    </listener>
+
+</web-app>
